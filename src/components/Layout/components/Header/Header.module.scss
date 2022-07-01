@@ -1,4 +1,9 @@
 .wrapper {
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spliter: 9px;
+    --search-btn-width: 52px;
+
     width: 100%;
     height: var(--default-layout-header-height, 60px);
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
@@ -9,4 +14,79 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search {
+    position: relative;
+    width: 361px;
+    height: var(--search-height);
+    background-color: rgba(var(--black-color), 0.06);
+    border-radius: var(--search-border-radius);
+    padding-left: 16px;
+    border: 1.5px solid transparent;
+    display: flex;
+
+    input {
+        flex: 1;
+        height: 100%;
+        color: var(--black-color);
+        font-size: 1.6rem;
+        background-color: transparent;
+        caret-color: var(--primary-color);
+
+        &::placeholder {
+            color: rgb(117, 117, 117);
+        }
+
+        &:not(:placeholder-shown) ~ .search-btn {
+            color: rgba(var(--black-color), 0.75);
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        height: calc(var(--search-height) - 2 * var(--search-top-spliter));
+        width: 1px;
+        right: var(--search-btn-width);
+        top: var(--search-top-spliter);
+        background-color: rgba(var(--black-color), 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(var(--black-color), 0.2);
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-btn-width) + 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(var(--black-color), 0.34);
+}
+
+.search-btn {
+    width: var(--search-btn-width);
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    color: rgba(var(--black-color), 0.34);
+    font-size: 1.8rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(var(--black-color), 0.03);
+    }
+
+    &:active {
+        background-color: rgba(var(--black-color), 0.06);
+    }
+}
+
+.actions {
 }
